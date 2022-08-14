@@ -146,3 +146,21 @@ if (eleccion == "12") {
 } else if (cuota == "no") {
 alert("Gracias por elegirnos");
 }
+
+
+// agregando cards //
+
+let cartas=document.getElementById("cartas");
+for(const producto of Productos){
+    let carta=document.createElement("div");
+    carta.className="card col-md-3";
+    carta.innerHTML=`
+        <div class="card-body">
+            <h5 class="card-title">${producto.nombre}</h5>
+            <p class="card-text"> $${producto.precio}</p>
+            <p class="card-text">${producto.peso}</p>
+            <button class="btn btn-primary">Comprar</a>
+        </div>
+    `;
+    cartas.append(carta);
+}
