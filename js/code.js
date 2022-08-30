@@ -1,4 +1,13 @@
-let carrito = JSON.parse(localStorage.getItem("carrito"));
+//  let carrito = JSON.parse(localStorage.getItem("carrito"));
+//  if (carrito) {
+//  carrito = JSON.parse(localStorage.getItem("carrito"));
+//  console.log(carrito);
+//  } else {
+//  carrito = [];
+//  }
+
+
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 class Producto {
     constructor(id, nombre, precio, foto) {
@@ -45,6 +54,7 @@ function cargarProductos() {
     productos.push(new Producto(2, 'Rebosador', 500, './images/Rebosador.jpeg'));
     productos.push(new Producto(3, 'Bolson pan rallado', 4000, './images/Bolson.jpeg'));
     productos.push(new Producto(4, 'Bolson rebosador', 6000, './images/Bolson.jpeg'));
+
 }
 // Carga el carrito // 
 function cargarCarrito() {
@@ -95,26 +105,26 @@ function dibujarCarrito() {
 
     // Muestra renglon final del carrito con el precio total de la compra //
 
-    if (elementosCarrito.length == 0) {
-        preciototal.innerHTML = `
-            <th scope="row" colspan="5">Precio total $</th>
-        `;
-    } else {
-        preciototal.innerHTML = `
-            <th scope="row" colspan="5">Precio total $${sumaCarrito}</th>
-        `;
-    }
+//   if (elementosCarrito.length == 0) {
+//       preciototal.innerHTML = `
+//           <th scope="row" colspan="5">Precio total $</th>
+//       `;
+//   } else {
+//       preciototal.innerHTML = `
+//           <th scope="row" colspan="5">Precio total $${sumaCarrito}</th>
+//       `;
+//   }
 
 
 
-}
+// Ternario
 
+elementosCarrito.length == 0 ? preciototal.innerHTML = 
+` <th scope="row" colspan="5">Precio total $</th> ` 
+: preciototal.innerHTML = 
+` <th scope="row" colspan="5">Precio total $${sumaCarrito}</th> 
+`;
 
-if (carrito) {
-    carrito = JSON.parse(localStorage.getItem("carrito"));
-    console.log(carrito);
-} else {
-    carrito = [];
 }
 
 
