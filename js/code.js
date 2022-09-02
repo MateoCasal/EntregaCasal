@@ -51,9 +51,11 @@ dibujarCatalogoProductos();
 
 function cargarProductos() {
     productos.push(new Producto(1, 'Pan rallado', 350, './images/panRallado.jpeg'));
-    productos.push(new Producto(2, 'Rebosador', 500, './images/Rebosador.jpeg'));
-    productos.push(new Producto(3, 'Bolson pan rallado', 4000, './images/Bolson.jpeg'));
-    productos.push(new Producto(4, 'Bolson rebosador', 6000, './images/Bolson.jpeg'));
+    productos.push(new Producto(2, 'Rebozador', 500, './images/rebozador.jpeg'));
+    productos.push(new Producto(3, 'Bolson pan rallado', 4000, './images/Bolson.jpg'));
+    productos.push(new Producto(4, 'Bolson rebozador', 6000, './images/Bolson.jpg'));
+    productos.push(new Producto(5, 'Pan rallado premium', 1000, './images/panRallado.jpeg'));
+    productos.push(new Producto(6, 'Rebozador premium', 1500, './images/rebozador.jpeg'));
 
 }
 // Carga el carrito // 
@@ -191,6 +193,14 @@ function crearCard(producto) {
 
         dibujarCarrito();
         localStorage.setItem("carrito", JSON.stringify(carrito));
+// swal agregado una vez seleccionas los productos que queres comprar //
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: producto.nombre+' agregado al carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
 
 
 
@@ -210,4 +220,27 @@ function dibujarCatalogoProductos() {
         }
     );
 
+}
+
+// Al finalizar la compra se le agrega un swal al boton terminar la compra para afirmar esa accion // 
+
+let terminar= document.getElementById("terminar");
+terminar.onclick=()=>{
+    Swal.fire({
+        title: 'Quieres terminar la compra?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Compra exitosa!',
+            '',
+            'success'
+          )
+        }
+      })
 }

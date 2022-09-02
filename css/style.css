@@ -1,0 +1,27 @@
+.Fondobody{
+ background: linear-gradient(180deg, rgba(178,34,34,1) 0%, rgba(255,255,255,1) 50%, rgba(34,139,34,1) 100%);
+}
+
+.parrafoFooter{
+    text-align: center;
+    size: 16px;
+    background-color:rgba(34,139,34,1);
+}
+
+.tituloProductos{
+    text-align: center;
+    background-color: white;
+    font-family: "Mate SC", serif;
+    font-size: 30px;
+}
+
+.imgCarousel{
+    width: 100%;
+    object-fit: contain;
+    height: 50vh;
+    margin-top: 4vh;
+}
+
+.fondoNav{
+    background-color: rgba(178,34,34,1);
+}
