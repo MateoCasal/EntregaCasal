@@ -58,6 +58,7 @@ function cargarProductos() {
     productos.push(new Producto(6, 'Rebozador premium', 1500, './images/rebozador.jpeg'));
 
 }
+
 // Carga el carrito // 
 function cargarCarrito() {
 
@@ -243,4 +244,13 @@ terminar.onclick=()=>{
           )
         }
       })
+}
+
+
+
+async function obtenerValorDolar() {
+    const URLDOLAR = "https://api-dolar-argentina.herokuapp.com/api/dolarblue";
+    const resp=await fetch(URLDOLAR)
+    const data=await resp.json()
+    document.getElementById("fila_prueba").innerHTML+=(`<p align="center">Dolar compra: $ ${data.compra}  Dolar venta: $ ${data.venta}</p>`);
 }
