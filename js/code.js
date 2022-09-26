@@ -27,6 +27,8 @@ class ElementoCarrito {
 
 // Guardamos El catalogo y los elementos en el carrito // 
 
+let euroVenta;
+
 const productos = [];
 
 const elementosCarrito = [];
@@ -41,6 +43,7 @@ const preciototal = document.querySelector("#Preciototal");
 
 // Ejecutamos las Funciones //
 
+ValorDeEuro();
 cargarProductos();
 cargarCarrito();
 dibujarCarrito();
@@ -106,19 +109,9 @@ function dibujarCarrito() {
         }
     );
 
+
+
     // Muestra renglon final del carrito con el precio total de la compra //
-
-//   if (elementosCarrito.length == 0) {
-//       preciototal.innerHTML = `
-//           <th scope="row" colspan="5">Precio total $</th>
-//       `;
-//   } else {
-//       preciototal.innerHTML = `
-//           <th scope="row" colspan="5">Precio total $${sumaCarrito}</th>
-//       `;
-//   }
-
-
 
 // Ternario
 
@@ -157,6 +150,7 @@ function crearCard(producto) {
     cuerpoCarta.innerHTML = `
         <h5>${producto.nombre}</h5>
         <p>$ ${producto.precio} </p>
+        <p>Precio € ${(producto.precio/euroVenta).toFixed(1)}</p>
     `;
     cuerpoCarta.append(botonAgregar);
 
@@ -246,11 +240,15 @@ terminar.onclick=()=>{
       })
 }
 
+// API del EURO en tiempo real para convertir el precio //  
 
-
-async function obtenerValorDolar() {
-    const URLDOLAR = "https://api-dolar-argentina.herokuapp.com/api/dolarblue";
-    const resp=await fetch(URLDOLAR)
+async function ValorDeEuro() {
+    
+    const URLEURO = "https://api-dolar-argentina.herokuapp.com/api/euro/nacion";
+    const resp=await fetch(URLEURO)
     const data=await resp.json()
-    document.getElementById("fila_prueba").innerHTML+=(`<p align="center">Dolar compra: $ ${data.compra}  Dolar venta: $ ${data.venta}</p>`);
+    euroVenta = data.venta;
+    dibujarCatalogoProductos();
 }
+
+
